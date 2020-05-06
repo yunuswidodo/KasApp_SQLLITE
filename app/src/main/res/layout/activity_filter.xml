@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".FilterActivity">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp">
+
+            <EditText
+                android:id="@+id/edit_dari"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="dari"/>
+
+            <EditText
+                android:id="@+id/edit_ke"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:hint="ke"/>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <com.andexert.library.RippleView
+        android:id="@+id/rip_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.dd.ShadowLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:sl_shadowRadius="2dp">
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="filter"
+                android:textAllCaps="false"
+                android:textColor="@color/colorWhite"
+                android:background="@color/colorPrimary"/>
+
+        </com.dd.ShadowLayout>
+    </com.andexert.library.RippleView>
+
+</LinearLayout>
