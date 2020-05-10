@@ -56,8 +56,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -161,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
 
                     transaksi_id = ((TextView)view.findViewById(R.id.text_transaksi_id)).getText().toString();
                     Log.e("_transaksi", transaksi_id);
-
 
                     ListMenu();
                 }

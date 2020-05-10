@@ -78,7 +78,7 @@ public class EditActivity extends AppCompatActivity {
         edit_jumlah.setText(cursor.getString(2));
         edit_keterangan.setText(cursor.getString(3));
         tanggal = cursor.getString(4);  // yang simpan tangal aslinya
-        edit_tanggal.setText(cursor.getString(5));  // tanggal yang custom
+        edit_tanggal.setText(cursor.getString(5));  // tanggal yang custom ke kursor ke query db
         edit_tanggal.setOnClickListener(new View.OnClickListener() {   // yang dilakukan edit tanggal
 
             @Override // setelah date picker di tekan
@@ -87,7 +87,7 @@ public class EditActivity extends AppCompatActivity {
                    @Override
                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                        NumberFormat numberFormat = new DecimalFormat("00");    // biar 2
-                       tanggal = year + "-" + numberFormat.format(month + 1) + "-" + numberFormat.format(dayOfMonth) ;
+                       tanggal = year + "-" + numberFormat.format(month + 1) + "-" + numberFormat.format(dayOfMonth) ;  // hasil setelah date piker diklik
 
                        Log.e("_tanggal", tanggal);
                        edit_tanggal.setText(numberFormat.format(dayOfMonth) + "/" + numberFormat.format(month + 1) + "/" + numberFormat.format(year));
@@ -145,7 +145,8 @@ public class EditActivity extends AppCompatActivity {
 
         Toast.makeText(getApplicationContext(), "transaksi perubahan berhasil disimpan",Toast.LENGTH_LONG).show();
 
-        finish();
+        //coba hapus
+       finish();
 
     }
 }

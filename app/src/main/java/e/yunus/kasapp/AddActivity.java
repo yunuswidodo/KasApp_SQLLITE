@@ -59,12 +59,12 @@ public class AddActivity extends AppCompatActivity {
                 }
             }
         });
-        btn_simpan.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //edit_jumlah.getText().toString(); mengambil nilai(bisa dimasukan kedalam toast melalui string)
-            }
-        });
+//        btn_simpan.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //edit_jumlah.getText().toString(); mengambil nilai(bisa dimasukan kedalam toast melalui string)
+//            }
+//        });
 
         rip_simpan.setOnRippleCompleteListener(new RippleView.OnRippleCompleteListener() {
             @Override
@@ -111,3 +111,4 @@ public class AddActivity extends AppCompatActivity {
 
     }
 }
+
