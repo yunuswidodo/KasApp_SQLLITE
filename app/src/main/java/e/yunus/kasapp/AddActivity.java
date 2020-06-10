@@ -1,6 +1,7 @@
 package e.yunus.kasapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+import e.yunus.kasapp.helper.Config;
 import e.yunus.kasapp.helper.SqliteHelper;
 
 import android.database.sqlite.SQLiteDatabase;
@@ -13,6 +14,14 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.andexert.library.RippleView;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -92,6 +101,31 @@ public class AddActivity extends AppCompatActivity {
 
     }
 
+    private void insertMysql(){
+        AndroidNetworking.get(Config.HOST +"create.php")
+                .addQueryParameter("status", status)
+                .addQueryParameter("jumlah", edit_jumlah.getText().toString())
+                .addQueryParameter("keterangan", edit_keterangan.getText().toString())
+                .setPriority(Priority.LOW)
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (response.optString("response").equals("success")){
+                            Toast.makeText(getApplicationContext(), "transaksi berhasi disimpan", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }else {
+                            Toast.makeText(getApplicationContext(), "transaksi gagal disimpan", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
+    }
+
     @Override
     public boolean onSupportNavigateUp(){
         //jika kembali menutup halaman yang sudah terbuka
@@ -99,16 +133,21 @@ public class AddActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     private void simpanData(){
-        SQLiteDatabase database = sqliteHelper.getWritableDatabase();
-        database.execSQL("INSERT INTO transaksi (status, jumlah, keterangan) VALUES ('"+status+
-                "', '"+ edit_jumlah.getText().toString() + "', '"+edit_keterangan.getText().toString()+ "')");
-
-
-        Toast.makeText(getApplicationContext(), "transaksi berhasil disimpan",Toast.LENGTH_LONG).show();
-
-       finish();
+//        SQLiteDatabase database = sqliteHelper.getWritableDatabase();
+//        database.execSQL("INSERT INTO transaksi (status, jumlah, keterangan) VALUES ('"+status+
+//                "', '"+ edit_jumlah.getText().toString() + "', '"+edit_keterangan.getText().toString()+ "')");
+//
+//
+//        Toast.makeText(getApplicationContext(), "transaksi berhasil disimpan",Toast.LENGTH_LONG).show();
+//
+//       finish();
+        insertMysql();
 
     }
+
 }
+
 
