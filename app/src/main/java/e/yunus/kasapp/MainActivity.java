@@ -9,17 +9,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.andexert.library.RippleView;
-import com.androidnetworking.AndroidNetworking;
-import com.androidnetworking.common.Priority;
-import com.androidnetworking.error.ANError;
-import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import e.yunus.kasapp.helper.Config;
 import e.yunus.kasapp.helper.SqliteHelper;
 
 import android.util.Log;
@@ -32,8 +27,6 @@ import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.json.JSONObject;
 
 import java.text.NumberFormat;
 import java.util.ArrayList;
@@ -127,33 +120,10 @@ public class MainActivity extends AppCompatActivity {
 //            filter = false;
         }
 
-        //kasAdapter();
-        selectMYSQL();
+        kasAdapter();
 
     }
 
-    private void selectMYSQL(){
-        AndroidNetworking.get(Config.HOST + "read.php") // diread tidak membutuhkan param
-                .setPriority(Priority.LOW)
-                .build()
-                .getAsJSONObject(new JSONObjectRequestListener() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        NumberFormat rupiahformat = NumberFormat.getInstance(Locale.GERMANY);
-                        text_masuk.setText(rupiahformat.format(response.optDouble("masuk"))); // nilai yang diambil masuk | api php
-                        text_keluar.setText(rupiahformat.format(response.optDouble("keluar")));
-                        text_total.setText(rupiahformat.format(response.optDouble("saldo")));
-
-
-                    }
-
-                    @Override
-                    public void onError(ANError anError) {
-
-                    }
-                });
-
-    }
 
     private void kasAdapter(){
 
